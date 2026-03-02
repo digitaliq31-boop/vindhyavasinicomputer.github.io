@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>विंध्यवासिनी कंप्यूटर | डिजिटल सेवा केंद्र</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  background:#f4f9f4;
+}
+
+/* Notice */
+.notice{
+  background:#006400;
+  color:white;
+  padding:8px;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.notice span{
+  display:inline-block;
+  padding-left:100%;
+  animation:scroll 15s linear infinite;
+}
+
+@keyframes scroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-100%);}
+}
+
+/* Navbar */
+nav{
+  background:white;
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  padding:15px 0;
+  border-bottom:3px solid #006400;
+  font-weight:bold;
+}
+
+nav a{
+  color:#006400;
+  text-decoration:none;
+  padding:8px 15px;
+  border-radius:5px;
+  transition:0.3s;
+}
+
+nav a:hover{
+  background:#228b22;
+  color:white;
+}
+
+/* Header */
+header{
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  padding:15px;
+  border-bottom:4px solid #006400;
+}
+
+header img{
+  width:70px;
+}
+
+header h1{
+  color:#006400;
+  font-size:24px;
+}
+
+/* CINEMATIC SLIDER */
+.cinema-slider{
+  position:relative;
+  width:100%;
+  height:60vh;
+  min-height:300px;
+  max-height:600px;
+  overflow:hidden;
+}
+
+.cinema-slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:0;
+  transition:opacity 1.5s ease-in-out;
+}
+
+.cinema-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+
+.cinema-slide.active{
+  opacity:1;
+}
+
+/* Overlay */
+.overlay{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color:white;
+  background:rgba(0,0,0,0.55);
+  padding:20px 30px;
+  border-radius:15px;
+  max-width:90%;
+}
+
+.overlay h2{
+  font-size:clamp(22px,4vw,38px);
+  margin-bottom:10px;
+}
+
+.overlay p{
+  margin-bottom:15px;
+  font-size:clamp(14px,2vw,18px);
+}
+
+.btn{
+  background:#006400;
+  color:white;
+  padding:10px 25px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#228b22;
+}
+
+/* Section */
+.section{
+  padding:50px 8%;
+  text-align:center;
+}
+
+.section h3{
+  color:#006400;
+  margin-bottom:30px;
+  font-size:26px;
+}
+
+/* Services */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  border-top:5px solid #228b22;
+  transition:0.4s;
+  cursor:pointer;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* QR */
+.qr img{
+  width:200px;
+  margin-top:20px;
+  padding:12px;
+  border:3px solid #006400;
+  border-radius:10px;
+}
+
+/* WhatsApp */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:14px 20px;
+  border-radius:50px;
+  font-weight:bold;
+  text-decoration:none;
+  box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+footer{
+  background:#006400;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:40px;
+}
+
+/* Ultra Premium Search */
+.search-container{
+  max-width:500px;
+  margin:0 auto 30px;
+  position:relative;
+}
+
+.search-box-premium{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+
+.search-box-premium input{
+  width:100%;
+  padding:12px 45px 12px 40px;
+  border-radius:30px;
+  border:2px solid #006400;
+  font-size:16px;
+  outline:none;
+  transition:0.3s;
+}
+
+.search-box-premium input:focus{
+  box-shadow:0 0 15px rgba(0,100,0,0.4);
+}
+
+.search-box-premium i{
+  position:absolute;
+  left:15px;
+  color:#006400;
+}
+
+.voice-btn{
+  position:absolute;
+  right:5px;
+  background:#006400;
+  color:white;
+  border:none;
+  border-radius:50%;
+  width:35px;
+  height:35px;
+  cursor:pointer;
+}
+
+.voice-btn:hover{
+  background:#228b22;
+}
+
+.suggestions-box{
+  background:white;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  max-height:200px;
+  overflow-y:auto;
+  display:none;
+  position:absolute;
+  width:100%;
+  z-index:99;
+}
+
+.suggestions-box div{
+  padding:10px;
+  cursor:pointer;
+}
+
+.suggestions-box div:hover{
+  background:#f0f0f0;
+}
+
+.result-text{
+  text-align:center;
+  color:#006400;
+  margin-top:10px;
+  font-weight:bold;
+}
+
+.no-result{
+  text-align:center;
+  color:red;
+  display:none;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="notice">
+<span>🔔 सभी सरकारी ऑनलाइन सेवाएँ उपलब्ध | आय, जाति, निवास | पैन कार्ड | ई-श्रम | संपर्क: 9838024658</span>
+</div>
+
+<header>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg">
+<h1>विंध्यवासिनी कंप्यूटर</h1>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Services</a>
+  <a href="#">Category</a>
+  <a href="#">Latest</a>
+  <a href="#">Contact</a>
+  <a href="#">About Us</a>
+</nav>
+
+
+</div>
+
+<!-- Search -->
+<div class="search-container">
+  <div class="search-box-premium">
+    <i class="fa fa-search"></i>
+    <input type="text" id="searchService" placeholder="सेवा खोजें...">
+    <button onclick="startVoice()" class="voice-btn"><i class="fa fa-microphone"></i></button>
+  </div>
+  <div id="suggestions" class="suggestions-box"></div>
+  <p id="resultCount" class="result-text"></p>
+  <p id="noResult" class="no-result">कोई सेवा नहीं मिली ❌</p>
+</div>
+
+<div class="section">
+  <h3>हमारी सेवाएँ</h3>
+  <div class="grid">
+
+    <div class="card"><div class="service-icon"><i class="fa fa-file-alt fa-2x"></i></div><h4>आय प्रमाण पत्र <span class="new-tag">New</span></h4><p>ऑनलाइन आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-id-card fa-2x"></i></div><h4>जाति प्रमाण पत्र</h4><p>नया / सुधार</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-home fa-2x"></i></div><h4>निवास प्रमाण पत्र <span class="new-tag">New</span></h4><p>ऑनलाइन सेवा</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-credit-card fa-2x"></i></div><h4>पैन कार्ड</h4><p>नया / सुधार</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-user fa-2x"></i></div><h4>ई-श्रम कार्ड</h4><p>रजिस्ट्रेशन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-mobile-alt fa-2x"></i></div><h4>आधार अपडेट</h4><p>मोबाइल / पता सुधार</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-passport fa-2x"></i></div><h4>पासपोर्ट सेवा</h4><p>अपॉइंटमेंट बुकिंग</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-vote-yea fa-2x"></i></div><h4>वोटर आईडी</h4><p>नया / सुधार</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-utensils fa-2x"></i></div><h4>राशन कार्ड</h4><p>ऑनलाइन आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-toilet fa-2x"></i></div><h4>शौचालय योजना</h4><p>सरकारी योजना</p></div>
+
+    <div class="card"><div class="service-icon"><i class="fa fa-home fa-2x"></i></div><h4>प्रधानमंत्री आवास योजना</h4><p>आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-hand-holding-usd fa-2x"></i></div><h4>किसान सम्मान निधि</h4><p>रजिस्ट्रेशन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-graduation-cap fa-2x"></i></div><h4>स्कॉलरशिप फॉर्म</h4><p>ऑनलाइन भराई</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-bolt fa-2x"></i></div><h4>बिजली बिल भुगतान</h4><p>ऑनलाइन पेमेंट</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-water fa-2x"></i></div><h4>पानी बिल भुगतान</h4><p>ऑनलाइन पेमेंट</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-mobile-alt fa-2x"></i></div><h4>मोबाइल रिचार्ज</h4><p>सभी नेटवर्क</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-tv fa-2x"></i></div><h4>DTH रिचार्ज</h4><p>सभी ऑपरेटर</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-car fa-2x"></i></div><h4>FASTag सेवा</h4><p>नया / रिचार्ज</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-shield-alt fa-2x"></i></div><h4>LIC प्रीमियम</h4><p>ऑनलाइन भुगतान</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-briefcase fa-2x"></i></div><h4>बीमा सेवा</h4><p>जीवन / वाहन</p></div>
+
+    <div class="card"><div class="service-icon"><i class="fa fa-train fa-2x"></i></div><h4>रेल टिकट</h4><p>IRCTC बुकिंग</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-bus fa-2x"></i></div><h4>बस टिकट</h4><p>ऑनलाइन बुकिंग</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-plane fa-2x"></i></div><h4>फ्लाइट टिकट</h4><p>ऑनलाइन बुकिंग</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-file-invoice fa-2x"></i></div><h4>GST रजिस्ट्रेशन</h4><p>नया / रिटर्न</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-building fa-2x"></i></div><h4>MSME रजिस्ट्रेशन</h4><p>ऑनलाइन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-copy fa-2x"></i></div><h4>फोटो कॉपी</h4><p>ब्लैक & कलर</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-print fa-2x"></i></div><h4>प्रिंट आउट</h4><p>ऑनलाइन डॉक्यूमेंट</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-file fa-2x"></i></div><h4>ऑनलाइन फॉर्म</h4><p>सरकारी / प्राइवेट</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-briefcase fa-2x"></i></div><h4>जॉब फॉर्म</h4><p>ऑनलाइन आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-shield-alt fa-2x"></i></div><h4>UP पुलिस फॉर्म</h4><p>ऑनलाइन</p></div>
+
+    <div class="card"><div class="service-icon"><i class="fa fa-users fa-2x"></i></div><h4>SSC फॉर्म</h4><p>ऑनलाइन आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-university fa-2x"></i></div><h4>बैंक खाता खोलना</h4><p>जन सेवा</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-credit-card fa-2x"></i></div><h4>ATM कार्ड आवेदन</h4><p>नया</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-print fa-2x"></i></div><h4>आधार प्रिंट</h4><p>रंगीन प्रिंट</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-id-card fa-2x"></i></div><h4>पैन प्रिंट</h4><p>डुप्लीकेट</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-file-check fa-2x"></i></div><h4>जाति सत्यापन</h4><p>ऑनलाइन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-baby fa-2x"></i></div><h4>जन्म प्रमाण पत्र</h4><p>ऑनलाइन आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-skull-crossbones fa-2x"></i></div><h4>मृत्यु प्रमाण पत्र</h4><p>ऑनलाइन आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-car fa-2x"></i></div><h4>ड्राइविंग लाइसेंस</h4><p>अपॉइंटमेंट</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-car-side fa-2x"></i></div><h4>वाहन रजिस्ट्रेशन</h4><p>ऑनलाइन सेवा</p></div>
+
+    <div class="card"><div class="service-icon"><i class="fa fa-download fa-2x"></i></div><h4>RC डाउनलोड</h4><p>डिजिटल कॉपी</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-hand-holding fa-2x"></i></div><h4>पेंशन योजना</h4><p>आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-fire fa-2x"></i></div><h4>उज्ज्वला योजना</h4><p>रजिस्ट्रेशन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-child fa-2x"></i></div><h4>सुकन्या योजना</h4><p>आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-map-marker-alt fa-2x"></i></div><h4>डोमिसाइल</h4><p>ऑनलाइन आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-tractor fa-2x"></i></div><h4>किसान रजिस्ट्रेशन</h4><p>ऑनलाइन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-hospital fa-2x"></i></div><h4>आयुष्मान कार्ड</h4><p>गोल्डन कार्ड</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-laptop fa-2x"></i></div><h4>CSC सेवा</h4><p>सभी डिजिटल सेवा</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-question-circle fa-2x"></i></div><h4>राशन कार्ड</h4><p>नया कार्ड आवेदन संशोधन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-question-circle fa-2x"></i></div><h4>आयुष्मान भारत</h4><p>हेल्थ कार्ड (Golden Card)</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-question-circle fa-2x"></i></div><h4>कृषि सेवाएं</h4><p>(Agricultural Services)</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-question-circle fa-2x"></i></div><h4>फॉर्मर रजिस्ट्री</h4><p>ऑनलाइन आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-question-circle fa-2x"></i></div><h4>शौचालय फॉर्म</h4><p>ऑनलाइन आवेदन</p></div>
+    <div class="card"><div class="service-icon"><i class="fa fa-question-circle fa-2x"></i></div><h4>अन्य सरकारी सेवाएँ</h4><p>पूछताछ करें</p></div>
+
+  </div>
+</div>
+
+<style>
+.service-icon{
+  margin-bottom:10px;
+  color:#006400;
+  transition:0.3s;
+}
+.card:hover .service-icon{
+  color:#228b22;
+  transform: scale(1.3);
+}
+.new-tag{
+  background:#ff0000;
+  color:white;
+  font-size:12px;
+  padding:2px 6px;
+  border-radius:12px;
+  margin-left:5px;
+  animation:blink 1s infinite;
+}
+@keyframes blink{
+  0%,50%,100%{opacity:1;}
+  25%,75%{opacity:0;}
+}
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 20px 3px rgba(0,140,0,0.6);
+}
+</style>
+
+
+<a class="whatsapp" href="https://wa.me/919838024658" target="_blank">
+WhatsApp Chat
+</a>
+
+
+<script>
+let cinemaIndex = 0;
+const cinemaSlides = document.querySelectorAll(".cinema-slide");
+
+function showCinemaSlide(){
+  cinemaSlides.forEach(slide=>slide.classList.remove("active"));
+  cinemaSlides[cinemaIndex].classList.add("active");
+  cinemaIndex++;
+  if(cinemaIndex >= cinemaSlides.length){
+    cinemaIndex = 0;
+  }
+}
+
+setInterval(showCinemaSlide,5000);
+
+/* Search Box Premium */
+const searchInput = document.getElementById("searchService");
+const cards = document.querySelectorAll(".card");
+const resultText = document.getElementById("resultCount");
+const noResult = document.getElementById("noResult");
+const suggestionsBox = document.getElementById("suggestions");
+
+searchInput.addEventListener("keyup", function(){
+  let value = this.value.toLowerCase();
+  let visibleCount = 0;
+  suggestionsBox.innerHTML = "";
+  suggestionsBox.style.display = "none";
+
+  cards.forEach(function(card){
+    let text = card.innerText.toLowerCase();
+    if(text.includes(value)){
+      card.style.display = "block";
+      visibleCount++;
+      if(value.length > 0){
+        let div = document.createElement("div");
+        div.innerText = card.querySelector("h4").innerText;
+        div.onclick = function(){
+          searchInput.value = this.innerText;
+          suggestionsBox.style.display = "none";
+          searchInput.dispatchEvent(new Event('keyup'));
+        };
+        suggestionsBox.appendChild(div);
+        suggestionsBox.style.display = "block";
+      }
+    }else{
+      card.style.display = "none";
+    }
+  });
+
+  resultText.innerText = "कुल परिणाम: " + visibleCount;
+
+  if(visibleCount === 0){
+    noResult.style.display = "block";
+  }else{
+    noResult.style.display = "none";
+  }
+});
+
+/* Voice Search */
+function startVoice(){
+  if('webkitSpeechRecognition' in window){
+    let recognition = new webkitSpeechRecognition();
+    recognition.lang = "hi-IN";
+    recognition.start();
+    recognition.onresult = function(event){
+      searchInput.value = event.results[0][0].transcript;
+      searchInput.dispatchEvent(new Event('keyup'));
+    };
+  }else{
+    alert("Voice Search Browser में Support नहीं है");
+  }
+}
+</script>
+
+
+<footer>
+  <div class="footer-content">
+    <p class="footer-msg">और भी बहुत कुछ!<br>
+    किसी भी प्रकार की सरकारी या निजी सेवा के लिए हमसे संपर्क करें।<br>
+    हम आपकी पूरी सहायता करने के लिए तैयार हैं।</p>
+
+    <p class="footer-msg-eng">For any type of government or private service, please contact us.<br>
+    We are ready to assist you completely.</p>
+
+    <p class="contact-info">📞 9838024658 | ✉️ info@vindhyavasini.com</p>
+    <p class="copyright">© 2026 विंध्यवासिनी कंप्यूटर | प्रो. अमर कुमार</p>
+  </div>
+</footer>
+
+<style>
+footer{
+  background:#006400;
+  color:white;
+  text-align:center;
+  padding:30px 20px;
+  font-family:'Segoe UI',sans-serif;
+}
+
+.footer-content p{
+  margin:8px 0;
+  line-height:1.6;
+}
+
+.footer-msg{
+  font-size:16px;
+  font-weight:bold;
+}
+
+.footer-msg-eng{
+  font-size:14px;
+  font-style:italic;
+  color:#e0f0e0;
+}
+
+.contact-info{
+  font-size:15px;
+  margin-top:10px;
+}
+
+footer a{
+  color:white;
+  text-decoration:none;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+@media(max-width:600px){
+  .footer-msg, .footer-msg-eng, .contact-info{
+    font-size:14px;
+  }
+}
+</style>
+
+</body>
+</html>
